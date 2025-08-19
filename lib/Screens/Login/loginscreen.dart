@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:whatsapp_ui_design/Screens/OTP/otpscreen.dart';
 import 'package:whatsapp_ui_design/Widgets/uihelper.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -9,9 +10,13 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  String selectedcontry = "India";
+  String selectedcountry = "Bangladesh";
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController countryCodeController = TextEditingController(text: "880");
 
   List<String> counties = [
+    "Bangladesh",
+    "Pakistan",
     "India",
     "USA",
     "UK",
@@ -49,9 +54,9 @@ class _LoginScreenState extends State<LoginScreen> {
             return DropdownMenuItem(child: Text(country.toString()), value: country);
           }).toList(), onChanged: (newvalue){
             setState(() {
-              selectedcontry = newvalue.toString();
+              selectedcountry = newvalue.toString();
             });
-          }, value: selectedcontry,decoration: InputDecoration(
+          }, value: selectedcountry,decoration: InputDecoration(
             enabledBorder: UnderlineInputBorder(
               borderSide: BorderSide(color: Color(0XFF00A884)),
             ),
@@ -68,9 +73,11 @@ class _LoginScreenState extends State<LoginScreen> {
               Container(
                 width: 60,
                 child: TextField(
+                  keyboardType: TextInputType.number,
+                  controller: countryCodeController,
                   enabled: true,
                   decoration: InputDecoration(
-                    hintText: "+91",
+                    hintText: "880",
                     enabledBorder: UnderlineInputBorder(
                       borderSide: BorderSide(color: Color(0XFF00A884)),
                     ),
@@ -80,6 +87,7 @@ class _LoginScreenState extends State<LoginScreen> {
               SizedBox(width: 10),
               Expanded(
                 child: TextField(
+                  controller: phoneController,
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
                     hintText: "phone number",
@@ -99,9 +107,13 @@ class _LoginScreenState extends State<LoginScreen> {
         padding: const EdgeInsets.symmetric(horizontal: 20),
         child: UiHelper.CustomButton(
           callback: () {
-            Navigator.push(context, MaterialPageRoute(
-              builder: (context) => LoginScreen(),
-            ));
+            if (phoneController.text.isNotEmpty) {
+              Navigator.push(context, MaterialPageRoute(
+                builder: (context) => Otpscreen(
+                  phoneNumber: countryCodeController.text + phoneController.text,
+                ),
+              ));
+            }
           },
           buttonname: "Next",
         ),
