@@ -15,7 +15,8 @@ class MyApp extends StatelessWidget {
       title: 'WhatsApp UI',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF00A884)),
-        useMaterial3: true,
+        useMaterial3: false,
+       fontFamily: "Roboto"
       ),
       home: SplashScreen(),
     );
