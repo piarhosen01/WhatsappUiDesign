@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class Chatscreen extends StatelessWidget {
-   Chatscreen({super.key});
+class ChatScreen extends StatelessWidget {
+   ChatScreen({super.key});
   
   final List<Map<String, dynamic>> arrContent = [
   {

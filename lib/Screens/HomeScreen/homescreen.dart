@@ -42,8 +42,8 @@ class HomeScreen extends StatelessWidget {
         body: TabBarView(
           children: [
             CameraScreen(),
-            Chatscreen(),
-            Statusscreen(),
+            ChatScreen()
+            StatusScreen(),
             CallScreen(),
           ],
         ),
